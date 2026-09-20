@@ -5,13 +5,15 @@
   "model_name": "Logistic Regression",
   "model_file": "dropout_model.joblib",
   "best_params": {
-    "C": 0.05,
+    "C": 0.1,
     "penalty": "l2"
   },
-  "target": "is_dropout (1 = Dropout, 0 = Enrolled/Graduate)",
-  "threshold": 0.417,
+  "target": "is_dropout (1 = Dropout, 0 = Graduate); mahasiswa Enrolled tidak ikut dilatih",
+  "training_scope": "hanya mahasiswa berstatus Dropout dan Graduate",
+  "n_future_enrolled": 794,
+  "threshold": 0.508,
   "threshold_policy": "threshold operasional dipilih agar recall >= 85%",
-  "threshold_f1_optimal": 0.5592,
+  "threshold_f1_optimal": 0.5222,
   "features": [
     "Age_at_enrollment",
     "Admission_grade",
@@ -63,17 +65,18 @@
     "Course"
   ],
   "metrics_test": {
-    "accuracy": 0.861,
-    "precision": 0.7389,
-    "recall": 0.8768,
-    "f1": 0.8019,
-    "roc_auc": 0.9295,
-    "average_precision": 0.8976
+    "accuracy": 0.9242,
+    "precision": 0.8908,
+    "recall": 0.919,
+    "f1": 0.9047,
+    "roc_auc": 0.9723,
+    "average_precision": 0.9714
   },
-  "metrics_cv_f1": 0.7918,
-  "dropout_rate_dataset": 0.3212,
-  "n_train": 3539,
-  "n_test": 885,
+  "metrics_cv_f1": 0.8721,
+  "dropout_rate_labelled": 0.3915,
+  "dropout_share_all_students": 0.3212,
+  "n_train": 2904,
+  "n_test": 726,
   "labels": {
     "Course": {
       "33": "Biofuel Production Technologies",
@@ -172,17 +175,17 @@
   },
   "defaults": {
     "Age_at_enrollment": 20.0,
-    "Admission_grade": 126.1,
+    "Admission_grade": 126.5,
     "Previous_qualification_grade": 133.1,
     "Application_order": 1.0,
     "Curricular_units_1st_sem_enrolled": 6.0,
     "Curricular_units_1st_sem_approved": 5.0,
     "Curricular_units_1st_sem_evaluations": 8.0,
-    "Curricular_units_1st_sem_grade": 12.285714285714286,
+    "Curricular_units_1st_sem_grade": 12.34142857142857,
     "Curricular_units_2nd_sem_enrolled": 6.0,
     "Curricular_units_2nd_sem_approved": 5.0,
     "Curricular_units_2nd_sem_evaluations": 8.0,
-    "Curricular_units_2nd_sem_grade": 12.2,
+    "Curricular_units_2nd_sem_grade": 12.333333333333334,
     "Tuition_fees_up_to_date": 1,
     "Scholarship_holder": 0,
     "Debtor": 0,
@@ -208,7 +211,7 @@
     },
     "Application_order": {
       "min": 0.0,
-      "max": 9.0
+      "max": 6.0
     },
     "Curricular_units_1st_sem_enrolled": {
       "min": 0.0,
@@ -244,33 +247,33 @@
     }
   },
   "top_features": {
-    "MK lulus semester 2": 0.1675,
-    "MK lulus semester 1": 0.0369,
-    "MK diambil semester 2": 0.0313,
-    "MK diambil semester 1": 0.0215,
-    "SPP lunas": 0.0201,
-    "Nilai rata-rata semester 2": 0.0182,
-    "Usia saat mendaftar": 0.0077,
-    "Program studi": 0.0049,
-    "Penerima beasiswa": 0.0018,
-    "Jenis kelamin": 0.0016
+    "MK lulus semester 2": 0.1893,
+    "MK lulus semester 1": 0.054,
+    "MK diambil semester 2": 0.0276,
+    "MK diambil semester 1": 0.021,
+    "SPP lunas": 0.0123,
+    "Nilai rata-rata semester 2": 0.0086,
+    "Program studi": 0.0065,
+    "Penerima beasiswa": 0.0034,
+    "Jumlah evaluasi semester 2": 0.0026,
+    "Punya tunggakan": 0.0024
   },
   "risk_bands": [
     {
       "label": "Rendah",
       "min": 0.0,
-      "max": 0.25,
+      "max": 0.305,
       "action": "Monitoring rutin"
     },
     {
       "label": "Sedang",
-      "min": 0.25,
-      "max": 0.417,
+      "min": 0.305,
+      "max": 0.508,
       "action": "Pantau nilai semester berjalan"
     },
     {
       "label": "Tinggi",
-      "min": 0.417,
+      "min": 0.508,
       "max": 0.75,
       "action": "Jadwalkan konseling akademik"
     },
@@ -281,5 +284,5 @@
       "action": "Intervensi segera: konseling + tinjau keringanan biaya"
     }
   ],
-  "trained_at": "2026-09-20 22:38:43"
+  "trained_at": "2026-09-20 23:43:59"
 }

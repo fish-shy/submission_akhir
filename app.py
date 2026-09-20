@@ -143,9 +143,9 @@ def warning_flags(row: dict) -> list[tuple[bool, str]]:
     ratio2 = row["Curricular_units_2nd_sem_approved"] / s2_enrolled
     return [
         (row["Tuition_fees_up_to_date"] == 0,
-         "SPP belum lunas — 86,6% mahasiswa dengan tunggakan SPP berakhir dropout"),
+         "SPP belum lunas — 94,0% mahasiswa dengan tunggakan SPP berakhir dropout"),
         (row["Debtor"] == 1,
-         "Tercatat punya tunggakan (debtor) — dropout rate kelompok ini 62,0%"),
+         "Tercatat punya tunggakan (debtor) — dropout rate kelompok ini 75,5%"),
         (ratio2 < 0.5,
          f"Hanya {ratio2:.0%} mata kuliah semester 2 yang lulus (di bawah setengah beban studi)"),
         (ratio1 < 0.5,
@@ -153,9 +153,9 @@ def warning_flags(row: dict) -> list[tuple[bool, str]]:
         (row["Curricular_units_2nd_sem_grade"] < 10 and row["Curricular_units_2nd_sem_enrolled"] > 0,
          "Nilai rata-rata semester 2 di bawah 10 dari skala 20"),
         (row["Scholarship_holder"] == 0,
-         "Bukan penerima beasiswa — dropout rate 38,7% vs 12,2% pada penerima beasiswa"),
+         "Bukan penerima beasiswa — dropout rate 48,4% vs 13,8% pada penerima beasiswa"),
         (row["Age_at_enrollment"] > 23,
-         "Mendaftar di atas usia 23 tahun — kelompok ini dropout di kisaran 51–58%"),
+         "Mendaftar di atas usia 23 tahun — kelompok ini dropout di kisaran 60–66%"),
     ]
 
 
@@ -495,14 +495,19 @@ else:
         f"""
         #### Bagaimana model ini dibangun
 
-        - **Data:** {META['n_train'] + META['n_test']:,} catatan mahasiswa Jaya Jaya Institut,
-          dibagi {META['n_train']:,} untuk melatih dan {META['n_test']:,} untuk menguji.
-          Dari seluruh mahasiswa, {META['dropout_rate_dataset']:.1%} berakhir dropout.
+        - **Data latih:** {META['n_train'] + META['n_test']:,} mahasiswa yang **hasil akhirnya sudah pasti**
+          (berstatus *Dropout* atau *Graduate*), dibagi {META['n_train']:,} untuk melatih dan
+          {META['n_test']:,} untuk menguji. Di kelompok ini, {META['dropout_rate_labelled']:.1%}
+          berakhir dropout.
+        - **Tidak ikut dilatih:** {META['n_future_enrolled']:,} mahasiswa berstatus *Enrolled*. Status mereka
+          bukan "tidak dropout" melainkan *"belum ketahuan"*, sehingga melabelinya 0 akan membuat target model
+          ambigu. Justru merekalah sasaran sistem ini — mahasiswa yang hasil akhirnya masih bisa diubah.
         - **Algoritma:** **{META['model_name']}** dengan parameter `{META['best_params']}`,
           terpilih setelah dibandingkan dengan Random Forest dan Gradient Boosting melalui
           5-fold cross-validation.
         - **Fitur:** {len(FEATURES)} kolom — hasil studi dua semester pertama, status keuangan,
           serta profil dan jalur masuk mahasiswa.
+        - **Target:** 1 = *Dropout*, 0 = *Graduate*.
         - **Ambang keputusan:** {THRESHOLD:.2f} (bukan 0,50 bawaan). {META['threshold_policy']},
           karena melewatkan satu mahasiswa jauh lebih mahal daripada satu sesi konseling tambahan.
         """
@@ -527,14 +532,15 @@ else:
         hide_index=True, width="stretch")
 
     st.markdown(
-        """
+        f"""
         #### Batasan yang perlu diketahui pengguna
 
-        1. **Model memperkirakan risiko, bukan memastikan masa depan.** Sekitar 1 dari 4 mahasiswa
-           yang ditandai berisiko sebenarnya akan baik-baik saja — konsekuensi yang memang sengaja
-           diterima demi menekan jumlah mahasiswa yang terlewat.
-        2. **Akurasi bergantung pada ketersediaan nilai semester.** Untuk mahasiswa baru yang belum
-           punya riwayat akademik, keluarannya perlu diperlakukan sebagai perkiraan kasar.
+        1. **Model memperkirakan risiko, bukan memastikan masa depan.** Sekitar
+           {1 - m['precision']:.0%} mahasiswa yang ditandai berisiko sebenarnya akan baik-baik saja —
+           konsekuensi yang memang sengaja diterima demi menekan jumlah mahasiswa yang terlewat.
+        2. **Akurasi bergantung pada ketersediaan nilai semester.** Model dilatih memakai hasil dua
+           semester pertama, sehingga untuk mahasiswa baru yang belum punya riwayat akademik
+           keluarannya perlu diperlakukan sebagai perkiraan kasar.
         3. **Hubungan, bukan sebab-akibat.** Model menemukan bahwa mahasiswa dengan tunggakan SPP
            hampir selalu berakhir keluar; ini bukan berarti melunasi SPP dengan sendirinya mencegah
            dropout.
