@@ -6,7 +6,7 @@
 ---
 
 ## Streamlit link
-[https://hafiznugraha-streamlit-app.streamlit.app](https://hafiznugraha-streamlit-app.streamlit.app)
+[https://submissionakhir-bhxr7zowrzhvl6ef5ycqkz.streamlit.app/](https://submissionakhir-bhxr7zowrzhvl6ef5ycqkz.streamlit.app/)
 
 ## Business Understanding
 
@@ -169,7 +169,7 @@ Metabase akan membaca `metabase.db.mv.db` yang ada di folder yang sama, lalu buk
 Prototype sistem machine learning dibangun dengan **Streamlit** (`app.py`) dan sudah di-*deploy* ke
 **Streamlit Community Cloud** sehingga dapat diakses tanpa instalasi apa pun:
 
-**🔗 <https://hafiznugraha-streamlit-app.streamlit.app>**
+**🔗 <https://submissionakhir-bhxr7zowrzhvl6ef5ycqkz.streamlit.app/>**
 
 Aplikasi memuat pipeline terlatih dari `model/dropout_model.joblib` beserta metadata
 `model/model_metadata.json`, sehingga seluruh logika preprocessing, daftar fitur, label kategori, dan
