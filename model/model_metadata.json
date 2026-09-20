@@ -1,0 +1,285 @@
+{
+  "project": "Jaya Jaya Institut - Student Dropout Early Warning System",
+  "author": "Hafiz Nazwa Nugraha",
+  "dicoding_id": "FIshiwak",
+  "model_name": "Logistic Regression",
+  "model_file": "dropout_model.joblib",
+  "best_params": {
+    "C": 0.05,
+    "penalty": "l2"
+  },
+  "target": "is_dropout (1 = Dropout, 0 = Enrolled/Graduate)",
+  "threshold": 0.417,
+  "threshold_policy": "threshold operasional dipilih agar recall >= 85%",
+  "threshold_f1_optimal": 0.5592,
+  "features": [
+    "Age_at_enrollment",
+    "Admission_grade",
+    "Previous_qualification_grade",
+    "Application_order",
+    "Curricular_units_1st_sem_enrolled",
+    "Curricular_units_1st_sem_approved",
+    "Curricular_units_1st_sem_evaluations",
+    "Curricular_units_1st_sem_grade",
+    "Curricular_units_2nd_sem_enrolled",
+    "Curricular_units_2nd_sem_approved",
+    "Curricular_units_2nd_sem_evaluations",
+    "Curricular_units_2nd_sem_grade",
+    "Tuition_fees_up_to_date",
+    "Scholarship_holder",
+    "Debtor",
+    "Gender",
+    "Displaced",
+    "Daytime_evening_attendance",
+    "Marital_status",
+    "Application_mode",
+    "Course"
+  ],
+  "numeric_features": [
+    "Age_at_enrollment",
+    "Admission_grade",
+    "Previous_qualification_grade",
+    "Application_order",
+    "Curricular_units_1st_sem_enrolled",
+    "Curricular_units_1st_sem_approved",
+    "Curricular_units_1st_sem_evaluations",
+    "Curricular_units_1st_sem_grade",
+    "Curricular_units_2nd_sem_enrolled",
+    "Curricular_units_2nd_sem_approved",
+    "Curricular_units_2nd_sem_evaluations",
+    "Curricular_units_2nd_sem_grade"
+  ],
+  "binary_features": [
+    "Tuition_fees_up_to_date",
+    "Scholarship_holder",
+    "Debtor",
+    "Gender",
+    "Displaced",
+    "Daytime_evening_attendance"
+  ],
+  "categorical_features": [
+    "Marital_status",
+    "Application_mode",
+    "Course"
+  ],
+  "metrics_test": {
+    "accuracy": 0.861,
+    "precision": 0.7389,
+    "recall": 0.8768,
+    "f1": 0.8019,
+    "roc_auc": 0.9295,
+    "average_precision": 0.8976
+  },
+  "metrics_cv_f1": 0.7918,
+  "dropout_rate_dataset": 0.3212,
+  "n_train": 3539,
+  "n_test": 885,
+  "labels": {
+    "Course": {
+      "33": "Biofuel Production Technologies",
+      "171": "Animation & Multimedia Design",
+      "8014": "Social Service (kelas malam)",
+      "9003": "Agronomy",
+      "9070": "Communication Design",
+      "9085": "Veterinary Nursing",
+      "9119": "Informatics Engineering",
+      "9130": "Equinculture",
+      "9147": "Management",
+      "9238": "Social Service",
+      "9254": "Tourism",
+      "9500": "Nursing",
+      "9556": "Oral Hygiene",
+      "9670": "Advertising & Marketing Management",
+      "9773": "Journalism & Communication",
+      "9853": "Basic Education",
+      "9991": "Management (kelas malam)"
+    },
+    "Marital_status": {
+      "1": "Lajang",
+      "2": "Menikah",
+      "3": "Janda/Duda",
+      "4": "Bercerai",
+      "5": "Kumpul kebo",
+      "6": "Pisah secara hukum"
+    },
+    "Application_mode": {
+      "1": "Fase 1 - kuota umum",
+      "2": "Ordinance No. 612/93",
+      "5": "Fase 1 - kuota khusus (Azores)",
+      "7": "Pemegang gelar pendidikan tinggi lain",
+      "10": "Ordinance No. 854-B/99",
+      "15": "Mahasiswa internasional (S1)",
+      "16": "Fase 1 - kuota khusus (Madeira)",
+      "17": "Fase 2 - kuota umum",
+      "18": "Fase 3 - kuota umum",
+      "26": "Ordinance 533-A/99 b2 (beda kurikulum)",
+      "27": "Ordinance 533-A/99 b3 (institusi lain)",
+      "39": "Usia di atas 23 tahun",
+      "42": "Transfer",
+      "43": "Pindah program studi",
+      "44": "Pemegang diploma spesialisasi teknologi",
+      "51": "Pindah institusi/prodi",
+      "53": "Pemegang diploma short cycle",
+      "57": "Pindah institusi/prodi (internasional)"
+    },
+    "Tuition_fees_up_to_date": {
+      "1": "Lunas / tidak menunggak",
+      "0": "Menunggak"
+    },
+    "Scholarship_holder": {
+      "1": "Ya, penerima beasiswa",
+      "0": "Bukan penerima"
+    },
+    "Debtor": {
+      "1": "Ya, punya tunggakan",
+      "0": "Tidak"
+    },
+    "Gender": {
+      "1": "Laki-laki",
+      "0": "Perempuan"
+    },
+    "Displaced": {
+      "1": "Ya",
+      "0": "Tidak"
+    },
+    "Daytime_evening_attendance": {
+      "1": "Kelas siang",
+      "0": "Kelas malam"
+    }
+  },
+  "feature_labels": {
+    "Curricular_units_2nd_sem_approved": "MK lulus semester 2",
+    "Curricular_units_1st_sem_approved": "MK lulus semester 1",
+    "Curricular_units_2nd_sem_grade": "Nilai rata-rata semester 2",
+    "Curricular_units_1st_sem_grade": "Nilai rata-rata semester 1",
+    "Curricular_units_2nd_sem_evaluations": "Jumlah evaluasi semester 2",
+    "Curricular_units_1st_sem_evaluations": "Jumlah evaluasi semester 1",
+    "Curricular_units_2nd_sem_enrolled": "MK diambil semester 2",
+    "Curricular_units_1st_sem_enrolled": "MK diambil semester 1",
+    "Tuition_fees_up_to_date": "SPP lunas",
+    "Scholarship_holder": "Penerima beasiswa",
+    "Debtor": "Punya tunggakan",
+    "Gender": "Jenis kelamin",
+    "Age_at_enrollment": "Usia saat mendaftar",
+    "Admission_grade": "Nilai masuk",
+    "Previous_qualification_grade": "Nilai pendidikan sebelumnya",
+    "Application_order": "Urutan pilihan prodi",
+    "Displaced": "Mahasiswa pindahan/displaced",
+    "Daytime_evening_attendance": "Kelas siang/malam",
+    "Marital_status": "Status pernikahan",
+    "Application_mode": "Jalur masuk",
+    "Course": "Program studi"
+  },
+  "defaults": {
+    "Age_at_enrollment": 20.0,
+    "Admission_grade": 126.1,
+    "Previous_qualification_grade": 133.1,
+    "Application_order": 1.0,
+    "Curricular_units_1st_sem_enrolled": 6.0,
+    "Curricular_units_1st_sem_approved": 5.0,
+    "Curricular_units_1st_sem_evaluations": 8.0,
+    "Curricular_units_1st_sem_grade": 12.285714285714286,
+    "Curricular_units_2nd_sem_enrolled": 6.0,
+    "Curricular_units_2nd_sem_approved": 5.0,
+    "Curricular_units_2nd_sem_evaluations": 8.0,
+    "Curricular_units_2nd_sem_grade": 12.2,
+    "Tuition_fees_up_to_date": 1,
+    "Scholarship_holder": 0,
+    "Debtor": 0,
+    "Gender": 0,
+    "Displaced": 1,
+    "Daytime_evening_attendance": 1,
+    "Marital_status": 1,
+    "Application_mode": 1,
+    "Course": 9500
+  },
+  "ranges": {
+    "Age_at_enrollment": {
+      "min": 17.0,
+      "max": 70.0
+    },
+    "Admission_grade": {
+      "min": 95.0,
+      "max": 190.0
+    },
+    "Previous_qualification_grade": {
+      "min": 95.0,
+      "max": 190.0
+    },
+    "Application_order": {
+      "min": 0.0,
+      "max": 9.0
+    },
+    "Curricular_units_1st_sem_enrolled": {
+      "min": 0.0,
+      "max": 26.0
+    },
+    "Curricular_units_1st_sem_approved": {
+      "min": 0.0,
+      "max": 26.0
+    },
+    "Curricular_units_1st_sem_evaluations": {
+      "min": 0.0,
+      "max": 45.0
+    },
+    "Curricular_units_1st_sem_grade": {
+      "min": 0.0,
+      "max": 18.875
+    },
+    "Curricular_units_2nd_sem_enrolled": {
+      "min": 0.0,
+      "max": 23.0
+    },
+    "Curricular_units_2nd_sem_approved": {
+      "min": 0.0,
+      "max": 20.0
+    },
+    "Curricular_units_2nd_sem_evaluations": {
+      "min": 0.0,
+      "max": 33.0
+    },
+    "Curricular_units_2nd_sem_grade": {
+      "min": 0.0,
+      "max": 18.571428571428573
+    }
+  },
+  "top_features": {
+    "MK lulus semester 2": 0.1675,
+    "MK lulus semester 1": 0.0369,
+    "MK diambil semester 2": 0.0313,
+    "MK diambil semester 1": 0.0215,
+    "SPP lunas": 0.0201,
+    "Nilai rata-rata semester 2": 0.0182,
+    "Usia saat mendaftar": 0.0077,
+    "Program studi": 0.0049,
+    "Penerima beasiswa": 0.0018,
+    "Jenis kelamin": 0.0016
+  },
+  "risk_bands": [
+    {
+      "label": "Rendah",
+      "min": 0.0,
+      "max": 0.25,
+      "action": "Monitoring rutin"
+    },
+    {
+      "label": "Sedang",
+      "min": 0.25,
+      "max": 0.417,
+      "action": "Pantau nilai semester berjalan"
+    },
+    {
+      "label": "Tinggi",
+      "min": 0.417,
+      "max": 0.75,
+      "action": "Jadwalkan konseling akademik"
+    },
+    {
+      "label": "Sangat Tinggi",
+      "min": 0.75,
+      "max": 1.0,
+      "action": "Intervensi segera: konseling + tinjau keringanan biaya"
+    }
+  ],
+  "trained_at": "2026-09-20 22:38:43"
+}
